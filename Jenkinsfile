@@ -11,6 +11,12 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
 				}		
         }
+		stage('Scan') {
+            steps {
+                nexusPolicyEvolution failBuildOnNetworkError:false, iqApplication: "mvn-sample",
+				iqScanPattern:[[scanPattern:"**/*jar"]], iqStage: 'build', jobCredentialsId:''
+            }
+        }
 		stage('Test') {
             steps {
                 sh 'mvn test'
