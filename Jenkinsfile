@@ -14,7 +14,7 @@ pipeline {
 		stage('Scan') {
             steps {
                 nexusPolicyEvolution failBuildOnNetworkError:false, iqApplication: "mvn-sample",
-				iqScanPattern:[[scanPattern:"**/*jar"]], iqStage: 'build', jobCredentialsId:''
+				iqScanPattern:[[scanPattern:"**/*.jar"]], iqStage: 'build', jobCredentialsId:''
             }
         }
 		stage('Test') {
